@@ -16,20 +16,20 @@ from server import app
 api = Api(app)
 
 api.add_resource(Users, '/users')
-api.add_resource(User, '/user/<id>')
+api.add_resource(User, '/user/<int:id>')
 
 api.add_resource(Accounts, '/user/<user_id>/accounts')
 api.add_resource(Account, '/user/<user_id>/account/<id>')
 
-@app.errorhandler(Exception)
-def handle_error(error):
-    status_code = 500
-    if type(error).__name__ == "NotFound":
-        status_code = 404
-    elif type(error).__name__ == "TypeError":
-        status_code = 500
+# @app.errorhandler(Exception)
+# def handle_error(error):
+#     status_code = 500
+#     if type(error).__name__ == "NotFound":
+#         status_code = 404
+#     elif type(error).__name__ == "TypeError":
+#         status_code = 500
     
-    return jsonify({'message': type(error).__name__}),status_code
+#     return jsonify({'message': type(error).__name__}),status_code
 
 
 # @app.before_request
